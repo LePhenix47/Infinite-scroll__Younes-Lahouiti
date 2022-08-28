@@ -1,0 +1,12 @@
+{
+  "name": "10.-scrollinfini",
+  "version": "1.0.0",
+  "description": "This JSON file contains the script for SASS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass -w ./style.scss:./style.css -c -s compressed"
+  },
+  "author": "Younes LAHOUITI",
+  "license": "ISC"
+}

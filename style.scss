@@ -1,0 +1,292 @@
+//SASS Color variables
+$bg-body: #f1f1f1;
+$color-text: black;
+$shadow-color: #adadad;
+$shadow-color--focus: darken($shadow-color, 30%);
+$bg-input: white;
+$color-input: black;
+$color-push-to-top: black;
+$bg-scrollbar-thumb: darken($shadow-color, 10%);
+$bg-scrollbar-thumb--hover: darken($shadow-color, 30%);
+
+$bg-scrollbar-track-piece: lighten($shadow-color, 20%);
+
+
+//CSS Color variables for the light/dark mode
+:root {
+    --bg-body: #{$bg-body};
+    --color-text: #{$color-text};
+    --shadow-color: #{$shadow-color};
+    --shadow-color--focus: #{$shadow-color--focus};
+    --bg-input: #{$bg-input};
+    --color-input: #{$color-input};
+    --color-push-to-top: #{$color-push-to-top};
+    --bg-scrollbar-thumb: #{$bg-scrollbar-thumb};
+    --bg-scrollbar-thumb--hover: #{$bg-scrollbar-thumb--hover};
+    --bg-scrollbar-track-piece: #{$bg-scrollbar-track-piece};
+}
+
+@media (prefers-color-scheme: dark) {
+    $bg-body: #0e0e0e;
+    $color-text: white;
+    $shadow-color: #525252;
+    $shadow-color--focus: lighten($shadow-color, 30%);
+    $bg-input: black;
+    $color-input: white;
+    $color-push-to-top: white;
+
+    $bg-scrollbar-thumb: lighten($shadow-color, 10%);
+    $bg-scrollbar-thumb--hover: lighten($shadow-color, 30%);
+
+    $bg-scrollbar-track-piece: darken($shadow-color, 20%);
+
+    :root {
+        --bg-body: #{$bg-body};
+        --color-text: #{$color-text};
+        --shadow-color: #{$shadow-color};
+        --shadow-color--focus: #{$shadow-color--focus};
+        --bg-input: #{$bg-input};
+        --color-input: #{$color-input};
+        --color-push-to-top: #{$color-push-to-top};
+        --bg-scrollbar-thumb: #{$bg-scrollbar-thumb};
+        --bg-scrollbar-thumb--hover: #{$bg-scrollbar-thumb--hover};
+        --bg-scrollbar-track-piece: #{$bg-scrollbar-track-piece};
+    }
+
+}
+
+;
+
+
+//Typography + normalizations
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Raleway',
+        Helvetica,
+        sans-serif;
+    background-color: var(--bg-body);
+    color: var(--color-text);
+    transition: color 450ms ease-out, background-color 450ms ease-out;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    //Must set the color of the background
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--bg-scrollbar-thumb);
+    border-radius: 100vmax;
+
+    &:hover {
+        background-color: var(--bg-scrollbar-thumb--hover);
+    }
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: var(--bg-scrollbar-track-piece);
+    border-radius: 100vmax;
+    margin-block: 0 2px;
+}
+
+@supports (scrollbar-color: blue red) {
+    * {
+        scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-track-piece);
+        scrollbar-width: thin;
+        transition: scrollbar-color 450ms ease-out;
+    }
+}
+
+button {
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+label {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+input {
+    font-family: 'Raleway',
+        Helvetica,
+        sans-serif;
+}
+
+//SASS Maps
+$breakpoints: (
+    mobile: 768px,
+    tablet: 992px,
+    laptop: 993px,
+    desktop: 1150px
+);
+
+
+//SASS Mixins
+@mixin mobile-only {
+    @media screen and (max-width: map-get($breakpoints, mobile)) {
+        @content;
+    }
+}
+
+@mixin center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin center-flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin grid($rows: 4, $columns: auto-fill) {
+    display: grid;
+    grid-template-rows: repeat($rows, minmax(0%, 1fr));
+    grid-template-columns: repeat($columns, minmax(25%, 1fr));
+    gap: 10px;
+}
+
+//SASS Styles
+
+.main {
+    &__container {
+        width: 100%;
+        @include center-flex-column;
+    }
+
+    &__title {
+        font-weight: normal;
+        -webkit-text-decoration: underline 1px;
+        text-decoration: underline 1px;
+        margin-block: 50px;
+
+        &>span {
+            font-weight: bold;
+        }
+    }
+
+    &__label-input {
+        width: 50%;
+
+        @include mobile-only {
+            width: 80%;
+        }
+
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        width: -webkit-min-content;
+        width: -moz-min-content;
+        width: min-content;
+        font-family: 'Open sans';
+    }
+
+
+    &__input {
+        width: 100%;
+        height: 40px;
+        padding: 0 5px;
+        background-color: var(--bg-input);
+        color: var(--color-input);
+        box-shadow: 0px 5px 5px var(--shadow-color);
+        border: none;
+        border-radius: 5px;
+        transition:
+            box-shadow 150ms ease-out,
+            color 450ms ease-out,
+            background-color 450ms ease-out;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0px 5px 5px var(--shadow-color--focus);
+        }
+    }
+
+    &__images-container {
+        margin-top: 5px;
+        width: 50%;
+        max-width: 1000px;
+        margin-bottom: 20px;
+
+        @include grid();
+
+        @include mobile-only {
+            @include grid(4, 2);
+            width: 80%;
+        }
+
+    }
+
+    &__images {
+        @include center-flex;
+        width: 100%;
+        height: 100%;
+        max-height: 15vw;
+
+
+        @include mobile-only {
+            max-height: 300px;
+        }
+
+        -o-object-fit: cover;
+        object-fit: cover;
+        -o-object-position: center;
+        object-position: center;
+        // outline: 2px solid var(--shadow-color);
+    }
+}
+
+.push-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: 1px solid var(--color-push-to-top);
+    border-radius: 50%;
+    @include center-flex-column;
+
+    @include mobile-only {
+        border-radius: 5px;
+        bottom: 20px;
+        right: 5px;
+        width: 25px;
+        height: 50px;
+
+        &>* {
+            font-size: 12px;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    & * {
+        color: var(--color-push-to-top);
+    }
+}
