@@ -72,6 +72,7 @@ function insertImages(arrayOfImages) {
 inputElement.addEventListener("change", handleSearchRequest);
 
 function handleSearchRequest(e) {
+  e.preventDefault();
   if (this.value === "") {
     console.log("The vaue of the input element is empty!");
     imagesContainer.innerHTML = "";
