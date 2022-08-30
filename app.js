@@ -1,6 +1,5 @@
 //Part 1 inserting the images in the container with an infinite scroll
 const publicAPIKey = "eJynl6zPWeujRjd0VZwCVOjlpc8jchwfvwmF5TSdCNw";
-const protectedAPIKey = "sBCG6bEmiMVrJyGNYXMeJZiTdbmqCuQGHnjXUaNrGqI"; //DOES NOT WORK
 
 const imagesContainer = document.querySelector(".main__images-container");
 
