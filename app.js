@@ -21,7 +21,7 @@ function addNewImagesAfterScroll(entries) {
   }
 }
 const observer = new IntersectionObserver(addNewImagesAfterScroll, {
-  rootMargin: "25%",
+  rootMargin: "40%",
 });
 
 observer.observe(errorMessageParagraph);
