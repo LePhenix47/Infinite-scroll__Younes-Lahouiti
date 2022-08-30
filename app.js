@@ -46,7 +46,7 @@ async function callAPI() {
     );
   } catch (APIError) {
     console.error({ APIError });
-    errorMessageParagraph.textContent = `Error found! ${APIError.message} (╯°□°）╯︵ ┻━┻`;
+    errorMessageParagraph.textContent = `API error: ${APIError.message} (╯°□°）╯︵ ┻━┻`;
   }
 }
 callAPI();
