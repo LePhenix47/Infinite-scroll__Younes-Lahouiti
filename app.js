@@ -7,6 +7,8 @@ const errorMessageParagraph = document.querySelector(".error-message");
 
 const inputElement = document.querySelector(".main__input");
 
+const formElement = document.querySelector(".main__form");
+
 let researchedImage = "random";
 let pageIndex = 1;
 
@@ -70,6 +72,7 @@ function insertImages(arrayOfImages) {
 
 //Part 2 Research images
 inputElement.addEventListener("change", handleSearchRequest);
+formElement.addEventListener("submit", (e) => e.preventDefault());
 
 function handleSearchRequest(e) {
   e.preventDefault();
